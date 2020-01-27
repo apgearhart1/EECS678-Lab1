@@ -35,8 +35,8 @@
 struct Storage {
   intptr_t num_bugs_on_mars;
   const char* scary_bug;
-  char* sentence[6]; // It might be necessary to grow this array.
-  const char* colorful_bug;
+  char* sentence[7]; // It might be necessary to grow this array.
+  char* colorful_bug;
   intptr_t num_bugs_on_earth;
   intptr_t num_bugs_on_venus;
   char* useless_bug;
@@ -64,10 +64,10 @@ void echoohce(char** strs) {
   char** stop_beginning = strs - 1; // HINT: What could this possibly used for?
 
   // FIXME: Something is wrong in this for loop. It is printing garbage characters.
-  for (iter = strs; *iter != NULL; ++iter)
-    printf("%s ", iter);
+  for (iter = strs; *iter != NULL; iter++){
+    printf("%s ", *iter);
 
-  fflush(stdout);
+  fflush(stdout);}
 
   // The iterator is currently at the NULL pointer, so go back one character.
   --iter;
@@ -75,9 +75,9 @@ void echoohce(char** strs) {
   // FIXME: Do the same thing only backwards. The array has a NULL pointer at
   // the front, right? Nope. Both sides of the condition in the for loop are
   // wrong.
-  for (; *iter != NULL; --iter)
+  for (; *iter != *stop_beginning; --iter){
     printf("%s ", *iter);
-
+  }
   printf("\n");
   fflush(stdout);
 }
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
   bug_info.sentence[3] = strdup("bug");
   bug_info.sentence[4] = strdup("is");
   bug_info.sentence[5] = strdup("a");
-
+  bug_info.sentence[6] = NULL;
   // Print the current bug population on various planets
   printf("The current bug population of Earth is about: %zu\n",
          bug_info.num_bugs_on_earth); // 1480000000000000000
@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
   printf("The current bug population of Venus is about: %zu\n",
          bug_info.num_bugs_on_venus); // 0
 
-  
+
 
   // Print the following line:
   // "The total bug population of the solar system is: 1480000000000000000"
@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
 
   // Print "The most colorful bug is a a is bug colorful most The"
   echoohce(bug_info.sentence);
-    
+
   // Free all duplicated strings
   free(bug_info.sentence[0]);
   free(bug_info.sentence[1]);
@@ -141,6 +141,7 @@ int main(int argc, char** argv) {
   free(bug_info.sentence[3]);
   free(bug_info.sentence[4]);
   free(bug_info.sentence[5]);
+  free(bug_info.sentence[6]);
 
   // Prints "The current bug adjective is: (null)"
   printf("The current bug adjective is: %s\n", bug_info.sentence[2]);
@@ -148,7 +149,7 @@ int main(int argc, char** argv) {
   // Can we please forget about mosquitoes?
   // HINT: Where is the string that useless_bug is pointing to located in
   // memory and what area of memory does free() work with?
-  free(bug_info.useless_bug); // Remove this line if it is problematic
+  //free(bug_info.useless_bug); // Remove this line if it is problematic
 
   printf("Bugs didn't cause me to crash!\n\n");
 
