@@ -125,6 +125,7 @@ int main(int argc, char** argv) {
   printf("%s\n", bug_info.useless_bug);
 
   // Change the adjective to something appropriate for butterflies
+    //free(bug_info.sentence[2]);
   bug_info.sentence[2] = strdup("colorful");
 
   // Print "The most colorful bug is a butterfly"
@@ -141,8 +142,8 @@ int main(int argc, char** argv) {
   free(bug_info.sentence[3]);
   free(bug_info.sentence[4]);
   free(bug_info.sentence[5]);
-  free(bug_info.sentence[6]);
 
+  bug_info.sentence[2] = NULL;
   // Prints "The current bug adjective is: (null)"
   printf("The current bug adjective is: %s\n", bug_info.sentence[2]);
 
